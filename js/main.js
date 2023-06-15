@@ -75,7 +75,6 @@ function createRandomIdFromRangeGenerator (min, max) {
 const generateCommentId = createRandomIdFromRangeGenerator (1, 10000);
 const generatePhotoId = createRandomIdFromRangeGenerator (1, 25);
 const generateLikesNumber = createRandomIdFromRangeGenerator (15, 200);
-const generateCommentsNumber = createRandomIdFromRangeGenerator (1, 30);
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger (0, elements.length - 1)];
 
@@ -92,8 +91,7 @@ const createCommentsArray = () => {
 
 const createPhotoDescription = () => {
   const photoId = generatePhotoId();
-  const commentsNumber = generateCommentsNumber();
-  const commentsArray = [Array.from({length: commentsNumber}, createCommentsArray)];
+  const commentsArray = [Array.from({length: getRandomInteger(1, 30)}, createCommentsArray)];
 
   return {
     id: photoId,
