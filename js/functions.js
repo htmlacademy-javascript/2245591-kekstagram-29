@@ -1,10 +1,7 @@
 const checkWorkingTime = (dayBeginning, dayEnding, meetingTime, meetingDuration) => {
-  dayBeginning = dayBeginning.split(':');
-  dayBeginning = +dayBeginning[0] * 60 + +dayBeginning[1];
-  dayEnding = dayEnding.split(':');
-  dayEnding = +dayEnding[0] * 60 + +dayEnding[1];
-  meetingTime = meetingTime.split(':');
-  meetingTime = +meetingTime[0] * 60 + +meetingTime[1];
+  dayBeginning = +dayBeginning.split(':')[0] * 60 + +dayBeginning.split(':')[1];
+  dayEnding = +dayEnding.split(':')[0] * 60 + +dayEnding.split(':')[1];
+  meetingTime = +meetingTime.split(':')[0] * 60 + +meetingTime.split(':')[1];
   return (meetingTime >= dayBeginning && dayEnding >= meetingTime + meetingDuration);
 };
 
