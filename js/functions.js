@@ -1,3 +1,26 @@
+const checkWorkingTime = (dayBeginning, dayEnding, meetingTime, meetingDuration) => {
+  dayBeginning = dayBeginning.split(':');
+  dayBeginning = +dayBeginning[0] * 60 + +dayBeginning[1];
+  dayEnding = dayEnding.split(':');
+  dayEnding = +dayEnding[0] * 60 + +dayEnding[1];
+  meetingTime = meetingTime.split(':');
+  meetingTime = +meetingTime[0] * 60 + +meetingTime[1];
+  return (meetingTime >= dayBeginning && dayEnding >= meetingTime + meetingDuration);
+};
+
+/*
+'8:00' - начало рабочего дня
+'17:30' - конец рабочего дня
+'14:00' - начало встречи
+90 - продолжительность встречи в минутах
+*/
+
+checkWorkingTime('08:00', '17:30', '14:00', 90); // true
+checkWorkingTime('8:0', '10:0', '8:0', 120); // true
+checkWorkingTime('08:00', '14:30', '14:00', 90); // false
+checkWorkingTime('14:00', '17:30', '08:0', 90); // false
+checkWorkingTime('8:00', '17:30', '08:00', 900); // false
+
 // Функция для проверки длины строки.
 // Она принимает строку, которую нужно проверить, и максимальную длину и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее.
 
