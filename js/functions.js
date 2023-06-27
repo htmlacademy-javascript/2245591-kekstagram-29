@@ -1,7 +1,9 @@
+const getMinutes = (time) => +time.split(':')[0] * 60 + +time.split(':')[1];
+
 const checkWorkingTime = (dayBeginning, dayEnding, meetingTime, meetingDuration) => {
-  dayBeginning = +dayBeginning.split(':')[0] * 60 + +dayBeginning.split(':')[1];
-  dayEnding = +dayEnding.split(':')[0] * 60 + +dayEnding.split(':')[1];
-  meetingTime = +meetingTime.split(':')[0] * 60 + +meetingTime.split(':')[1];
+  dayBeginning = getMinutes(dayBeginning);
+  dayEnding = getMinutes(dayEnding);
+  meetingTime = getMinutes(meetingTime);
   return (meetingTime >= dayBeginning && dayEnding >= meetingTime + meetingDuration);
 };
 
