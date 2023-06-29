@@ -11,9 +11,9 @@ const descriptionsList = createPhotoDescriptions();
 
 descriptionsList.forEach((description) => {
   const photoThumbnail = photoThumbnailTemplate.cloneNode(true);
-  const imageTemplate = photoThumbnailTemplate.querySelector('.picture__img');
-  const likesNumber = photoThumbnailTemplate.querySelector('.picture__likes');
-  const comments = photoThumbnailTemplate.querySelector('.picture__comments');
+  const imageTemplate = photoThumbnail.querySelector('.picture__img');
+  const likesNumber = photoThumbnail.querySelector('.picture__likes');
+  const comments = photoThumbnail.querySelector('.picture__comments');
   imageTemplate.src = description['url'];
   imageTemplate.alt = description['description'];
   likesNumber.textContent = description['likes'];
