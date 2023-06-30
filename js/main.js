@@ -1,1 +1,3 @@
-import './display-photo.js';
+import {displayThumbnails} from './display-photo.js';
+
+displayThumbnails();
