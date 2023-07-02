@@ -1,29 +1,28 @@
+import { displayBigPicture } from './display-big-picture.js';
+
+const thumbnailsListFragment = document.createDocumentFragment();
 const picturesList = document.querySelector('.pictures');
 const photoThumbnailTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const createThumbnail = ({ url, description, likes, comments }) => {
+const createThumbnail = (description) => {
   const photoThumbnail = photoThumbnailTemplate.cloneNode(true);
   const imageTemplate = photoThumbnail.querySelector('.picture__img');
 
-  imageTemplate.src = url;
-  imageTemplate.alt = description;
-  photoThumbnail.querySelector('.picture__likes').textContent = likes;
-  photoThumbnail.querySelector('.picture__comments').textContent = comments.length;
+  imageTemplate.src = description.url;
+  imageTemplate.alt = description.description;
+  photoThumbnail.querySelector('.picture__likes').textContent = description.likes;
+  photoThumbnail.querySelector('.picture__comments').textContent = description.comments.length;
+
+  photoThumbnail.addEventListener('click', () => displayBigPicture(description));
 
   return photoThumbnail;
 };
 
 const displayThumbnails = (descriptionsList) => {
-  const thumbnailsListFragment = document.createDocumentFragment();
-
-  descriptionsList.forEach((item) => {
-    const photoThumbnail = createThumbnail(item);
-    thumbnailsListFragment.append(photoThumbnail);
-  });
-
+  descriptionsList.forEach((item) => thumbnailsListFragment.append(createThumbnail(item)));
   picturesList.append(thumbnailsListFragment);
 };
 
-export {displayThumbnails};
+export { displayThumbnails };
