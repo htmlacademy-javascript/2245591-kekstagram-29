@@ -11,7 +11,7 @@ const onModalEscapeKeydown = (evt) => {
 
 const showModal = () => {
   bigPicture.classList.remove('hidden');
-  body.classList.add('.modal-open');
+  body.classList.add('modal-open');
   document.querySelector('.social__comment-count').classList.add('hidden');
   document.querySelector('.comments-loader').classList.add('hidden');
   document.addEventListener('keydown', onModalEscapeKeydown);
@@ -20,7 +20,7 @@ const showModal = () => {
 // Использую объявление функции через function для всплытия - для функции onModalEscapeKeydown
 function closeModal () {
   bigPicture.classList.add('hidden');
-  body.classList.remove('.modal-open');
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onModalEscapeKeydown);
 }
 
