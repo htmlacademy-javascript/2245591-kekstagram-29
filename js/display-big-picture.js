@@ -15,7 +15,7 @@ const createComment = (item) => {
   avatar.src = item.avatar;
   avatar.alt = item.name;
   text.textContent = item.message;
-  commentsList.append(comment);
+  return comment;
 };
 
 const createCommentsList = ({ comments }) => {
