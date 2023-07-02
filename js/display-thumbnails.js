@@ -1,11 +1,7 @@
-import { createPhotoDescriptions } from './create-photo-descriptions.js';
-
 const picturesList = document.querySelector('.pictures');
 const photoThumbnailTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
-
-const descriptionsList = createPhotoDescriptions();
 
 const createThumbnail = (item) => {
   const photoThumbnail = photoThumbnailTemplate.cloneNode(true);
@@ -19,7 +15,7 @@ const createThumbnail = (item) => {
   return photoThumbnail;
 };
 
-const displayThumbnails = () => {
+const displayThumbnails = (descriptionsList) => {
   const thumbnailsListFragment = document.createDocumentFragment();
 
   descriptionsList.forEach((item) => {
