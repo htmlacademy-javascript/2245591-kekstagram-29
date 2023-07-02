@@ -5,7 +5,6 @@ const photoThumbnailTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const thumbnailsListFragment = document.createDocumentFragment();
 const descriptionsList = createPhotoDescriptions();
 
 const createThumbnail = (item) => {
@@ -16,11 +15,18 @@ const createThumbnail = (item) => {
   imageTemplate.alt = item['description'];
   photoThumbnail.querySelector('.picture__likes').textContent = item['likes'];
   photoThumbnail.querySelector('.picture__comments').textContent = item['comments'].length;
-  thumbnailsListFragment.append(photoThumbnail);
+
+  return photoThumbnail;
 };
 
 const displayThumbnails = () => {
-  descriptionsList.forEach((item) => createThumbnail(item));
+  const thumbnailsListFragment = document.createDocumentFragment();
+
+  descriptionsList.forEach((item) => {
+    const photoThumbnail = createThumbnail(item);
+    thumbnailsListFragment.append(photoThumbnail);
+  });
+
   picturesList.append(thumbnailsListFragment);
 };
 
