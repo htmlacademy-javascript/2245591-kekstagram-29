@@ -19,6 +19,7 @@ const createComment = (item) => {
 };
 
 const createCommentsList = ({ comments }) => {
+  commentsList.innerHTML = '';
   comments.forEach((comment) => commentsList.append(createComment(comment)));
 };
 
