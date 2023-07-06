@@ -1,11 +1,9 @@
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImage = bigPicture.querySelector('.big-picture__img').querySelector('img');
-const likesCount = bigPicture.querySelector('.likes-count');
-const commentsCount = bigPicture.querySelector('.comments-count');
 const commentsList = bigPicture.querySelector('.social__comments');
 const socialComment = bigPicture.querySelector('.social__comment');
-const socialCaption = bigPicture.querySelector('.social__caption');
 const closeButton = document.querySelector('.big-picture__cancel');
+const moreButton = document.querySelector('.social__comments-loader');
 
 const hideElements = () => {
   document.querySelector('.social__comment-count').classList.add('hidden');
@@ -23,19 +21,23 @@ const onCloseButtonClick = () => {
   closeModal();
 };
 
+const onShowMoreClick = () => {};
+
 const showModal = () => {
   bigPicture.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
   closeButton.addEventListener('click', onCloseButtonClick);
+  moreButton.addEventListener('click', onShowMoreClick);
 };
 
 // Использую объявление функции через function для всплытия - для функции onModalEscapeKeydown
-function closeModal () {
+function closeModal() {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
   closeButton.removeEventListener('click', onCloseButtonClick);
+  moreButton.removeEventListener('click', onShowMoreClick);
 }
 
 const createComment = (item) => {
@@ -54,9 +56,9 @@ const createCommentsList = ({ comments }) => {
 const fillBigPicture = (data) => {
   bigPictureImage.src = data.url;
   bigPictureImage.alt = data.description;
-  likesCount.textContent = data.likes;
-  commentsCount.textContent = data.comments.length;
-  socialCaption.textContent = data.description;
+  bigPicture.querySelector('.likes-count').textContent = data.likes;
+  bigPicture.querySelector('.comments-count').textContent = data.comments.length;
+  bigPicture.querySelector('.social__caption').textContent = data.description;
   createCommentsList(data);
 };
 
