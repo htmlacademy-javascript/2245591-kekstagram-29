@@ -1,5 +1,7 @@
 import { displayBigPicture } from './display-big-picture.js';
+import { createPhotoDescriptions } from './create-photo-descriptions.js';
 
+const descriptionsList = createPhotoDescriptions();
 const thumbnailsListFragment = document.createDocumentFragment();
 const picturesList = document.querySelector('.pictures');
 const photoThumbnailTemplate = document.querySelector('#picture')
@@ -15,12 +17,15 @@ const createThumbnail = (description) => {
   photoThumbnail.querySelector('.picture__likes').textContent = description.likes;
   photoThumbnail.querySelector('.picture__comments').textContent = description.comments.length;
 
-  photoThumbnail.addEventListener('click', () => displayBigPicture(description));
+  photoThumbnail.addEventListener('click', (event) => {
+    event.preventDefault();
+    displayBigPicture(description);
+  });
 
   return photoThumbnail;
 };
 
-const displayThumbnails = (descriptionsList) => {
+const displayThumbnails = () => {
   descriptionsList.forEach((item) => thumbnailsListFragment.append(createThumbnail(item)));
   picturesList.append(thumbnailsListFragment);
 };
