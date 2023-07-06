@@ -6,7 +6,6 @@ const commentsList = bigPicture.querySelector('.social__comments');
 const socialComment = bigPicture.querySelector('.social__comment');
 const socialCaption = bigPicture.querySelector('.social__caption');
 const closeButton = document.querySelector('.big-picture__cancel');
-// const moreButton = document.querySelector('.social__comments-loader');
 
 const hideElements = () => {
   document.querySelector('.social__comment-count').classList.add('hidden');
