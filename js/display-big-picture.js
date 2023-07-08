@@ -31,7 +31,6 @@ const createComment = (item) => {
   return comment;
 };
 
-// Использую объявление функции через function для всплытия - для обработчика onShowMoreButtonClick
 const renderCommentsList = () => {
   const fragment = document.createDocumentFragment();
   const currentComments = comments.slice(shownComments, shownComments + COMMENTS_COUNTER);
