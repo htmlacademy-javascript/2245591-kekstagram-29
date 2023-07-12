@@ -65,9 +65,9 @@ const closeModal = () => {
 };
 
 // Использую объявление функции через function для всплытия
-function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !evt.target.closest('.social__footer-text')) {
-    evt.preventDefault();
+function onDocumentKeydown(event) {
+  if (event.key === 'Escape' && !event.target.closest('.social__footer-text')) {
+    event.preventDefault();
     closeModal();
   }
 }
