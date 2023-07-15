@@ -60,10 +60,6 @@ const setContainerState = (value) => {
   imageUploadEffectLevel.classList.remove('hidden');
 };
 
-// const resetEffects = () => {
-
-// };
-
 const initEffects = (value) => {
   const {min, max, step, style, units} = EFFECTS[value] || EFFECTS.default;
   currentStyle = style;
