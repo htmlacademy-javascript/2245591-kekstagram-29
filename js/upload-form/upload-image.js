@@ -1,5 +1,6 @@
 import { initScale, resetScale } from './scale.js';
 import { initEffects, updateEffects } from './filters.js';
+import { initValidator, pristineValidate, pristineReset } from './validate.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const uploadForm = document.querySelector('.img-upload__form');
@@ -33,6 +34,7 @@ const openUploadForm = () => {
 function closeUploadForm () {
   resetScale();
   uploadForm.reset();
+  pristineReset();
   updateEffects(currentEffect);
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
@@ -45,12 +47,15 @@ const onUploadInputChange = () => {
 };
 
 const onUploadFormSubmit = (evt) => {
-  evt.preventDefault();
+  if (!pristineValidate()) {
+    evt.preventDefault();
+  }
 };
 
 const initUploadForm = () => {
   initScale();
   initEffects(currentEffect);
+  initValidator();
   effectsList.addEventListener('change', onEffectsListChange);
   uploadInput.addEventListener('change', onUploadInputChange);
   uploadForm.addEventListener('submit', onUploadFormSubmit);
