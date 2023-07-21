@@ -2,7 +2,7 @@ import { initScale, resetScale } from './scale.js';
 import { initSlider } from './effects.js';
 import { initValidator, validatePristine, resetPristine } from './validate.js';
 import { sendData } from '../utils/api.js';
-import { createTemplate } from './messages-template.js';
+import { showMessage } from './messages-template.js';
 
 const UPLOAD_URL = 'https://29.javascript.pages.academy/kekstagram';
 const SUCCESS_MESSAGE = 'Изображение успешно загружено';
@@ -35,14 +35,6 @@ const onDocumentKeydown = (event) => {
 
 const onEffectsListChange = (event) => initSlider(event.target.value);
 
-const onErrorButtonClick = () => {
-  document.body.removeChild(document.querySelector(`.${ERROR_CLASS_NAME}`));
-};
-
-const onSuccessButtonClick = () => {
-  document.body.removeChild(document.querySelector(`.${SUCCESS_CLASS_NAME}`));
-};
-
 function openUploadForm () {
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -72,17 +64,12 @@ const setButtonState = (state) => {
 const uploadSuccess = () => {
   setButtonState(false);
   closeUploadForm();
-  createTemplate(SUCCESS_MESSAGE, SUCCESS_BUTTON_MESSAGE, SUCCESS_CLASS_NAME, true);
-  const successButton = document.querySelector(`.${SUCCESS_CLASS_NAME}__button`);
-  successButton.addEventListener('click', onSuccessButtonClick);
+  showMessage(SUCCESS_MESSAGE, SUCCESS_CLASS_NAME, SUCCESS_BUTTON_MESSAGE);
 };
-
 
 const uploadError = () => {
   setButtonState(false);
-  createTemplate(ERROR_MESSAGE, ERROR_BUTTON_MESSAGE, ERROR_CLASS_NAME, true);
-  const errorButton = document.querySelector(`.${ERROR_CLASS_NAME}__button`);
-  errorButton.addEventListener('click', onErrorButtonClick);
+  showMessage(ERROR_MESSAGE, ERROR_CLASS_NAME, ERROR_BUTTON_MESSAGE);
 };
 
 const onUploadFormSubmit = (event) => {
