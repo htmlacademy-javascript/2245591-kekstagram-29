@@ -20,7 +20,7 @@ const sortRandom = (data) => {
     [dataClone[i], dataClone[j]] = [dataClone[j], dataClone[i]];
   }
 
-  return dataClone.splice(0, RANDOM_PICTURES_COUNT);
+  return dataClone.slice(0, RANDOM_PICTURES_COUNT);
 };
 
 const getFilteredData = (id, data) => {
