@@ -52,7 +52,7 @@ let currentStyle;
 let currentUnit;
 
 const setContainerState = (value) => {
-  if (value === 'none') {
+  if (value === 'none' || !value) {
     imageUploadEffectLevel.classList.add('hidden');
     imageUploadPreview.style.filter = 'none';
     return;
@@ -60,7 +60,7 @@ const setContainerState = (value) => {
   imageUploadEffectLevel.classList.remove('hidden');
 };
 
-const initEffects = (value) => {
+const createSlider = (value) => {
   const {min, max, step, style, units} = EFFECTS[value] || EFFECTS.default;
   currentStyle = style;
   currentUnit = units;
@@ -84,26 +84,12 @@ const initEffects = (value) => {
   });
 };
 
-const updateEffects = (value) => {
-  setContainerState(value);
-
-  if (value === 'none') {
-    return;
+const initSlider = (value) => {
+  if (effectLevelSlider.noUiSlider) {
+    effectLevelSlider.noUiSlider.destroy();
   }
 
-  const {min, max, step, style, units} = EFFECTS[value] || EFFECTS.default;
-
-  currentStyle = style;
-  currentUnit = units;
-
-  effectLevelSlider.noUiSlider.updateOptions({
-    range: {
-      min: min,
-      max: max,
-    },
-    step: step,
-    start: max,
-  });
+  createSlider(value);
 };
 
-export { initEffects, updateEffects };
+export { initSlider };
