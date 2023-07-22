@@ -11,9 +11,12 @@ const SUCCESS_CLASS_NAME = 'success';
 const ERROR_MESSAGE = 'Ошибка загрузки изображения';
 const ERROR_BUTTON_MESSAGE = 'Попробовать снова';
 const ERROR_CLASS_NAME = 'error';
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const uploadInput = document.querySelector('.img-upload__input');
 const uploadForm = document.querySelector('.img-upload__form');
+const imageUploadPreview = document.querySelector('.img-upload__preview img');
+const effectsPreview = document.querySelectorAll('.effects__preview');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const effectsList = document.querySelector('.img-upload__effects');
 const currentEffect = effectsList.querySelector('input:checked').value;
@@ -53,7 +56,21 @@ function closeUploadForm () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
+const fileChooser = () => {
+  const image = uploadInput.files[0];
+  const imageName = image.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((fileType) => imageName.endsWith(fileType));
+
+  if (matches) {
+    const fileUrl = URL.createObjectURL(image);
+    imageUploadPreview.src = fileUrl;
+    effectsPreview.forEach((effect) => (effect.style.backgroundImage = `url(${fileUrl})`));
+  }
+};
+
 const onUploadInputChange = () => {
+  fileChooser();
   openUploadForm();
 };
 
