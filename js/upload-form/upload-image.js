@@ -56,6 +56,7 @@ function closeUploadForm () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
+// Функция выбора изображения
 const fileChooser = () => {
   const image = uploadInput.files[0];
   const imageName = image.name.toLowerCase();
