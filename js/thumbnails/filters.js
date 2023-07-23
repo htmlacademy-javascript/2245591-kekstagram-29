@@ -1,5 +1,5 @@
 import { displayThumbnails } from './display-thumbnails.js';
-import { getRandomInteger, debounce } from '../utils/util.js';
+import { debounce } from '../utils/util.js';
 
 const RANDOM_PICTURES_COUNT = 10;
 const DELAY = 500;
@@ -10,13 +10,13 @@ const imageFilters = document.querySelector('.img-filters');
 const imageFiltersForm = document.querySelector('.img-filters__form');
 const picturesList = document.querySelector('.pictures');
 
-const sortByComments = (data) => data.slice().sort((a, b) => b.comments.length - a.comments.length);
+const sortByCommentsLength = (data) => data.slice().sort((a, b) => b.comments.length - a.comments.length);
 
 const sortRandom = (data) => {
   const dataClone = data.slice();
 
   for (let i = dataClone.length - 1; i > 0; i--) {
-    const j = getRandomInteger(0, dataClone.length);
+    const j = Math.floor(Math.random() * (i + 1));
     [dataClone[i], dataClone[j]] = [dataClone[j], dataClone[i]];
   }
 
@@ -28,7 +28,7 @@ const getFilteredData = (id, data) => {
     case FILTER_RANDOM:
       return sortRandom(data);
     case FILTER_DISCUSSED:
-      return sortByComments(data);
+      return sortByCommentsLength(data);
     default:
       return data;
   }
@@ -48,7 +48,6 @@ const initFilters = (data) => {
     if (event.target.closest('.img-filters__button') && !event.target.closest('.img-filters__button--active')) {
       document.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
       event.target.classList.add('img-filters__button--active');
-      picturesList.querySelectorAll('.picture').forEach((image) => image.remove());
       renderPictures(event.target.id, data);
     }
   });

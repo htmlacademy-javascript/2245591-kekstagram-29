@@ -1,5 +1,5 @@
-const getRandomInteger = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
-const getRandomArrayElement = (elements) => elements[getRandomInteger (0, elements.length - 1)];
+const isEscape = (event) => event.key === 'Escape';
+
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
 
@@ -11,4 +11,4 @@ const debounce = (callback, timeoutDelay) => {
 };
 
 
-export { getRandomInteger, getRandomArrayElement, debounce };
+export { debounce, isEscape };
