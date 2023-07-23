@@ -26,7 +26,6 @@ const createThumbnail = (description) => {
 const displayThumbnails = (data) => {
   data.forEach((item) => thumbnailsListFragment.append(createThumbnail(item)));
   picturesList.append(thumbnailsListFragment);
-
 };
 
 export { displayThumbnails };

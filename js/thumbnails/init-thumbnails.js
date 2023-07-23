@@ -14,9 +14,7 @@ const onGetSuccess = (data) => {
   displayThumbnails(getFilteredData(currentFilter, data));
 };
 
-const onGetError = () => {
-  showMessage(ERROR_MESSAGE, ERROR_CLASS_NAME);
-};
+const onGetError = () => showMessage(ERROR_MESSAGE, ERROR_CLASS_NAME);
 
 const initThumbnails = () => getData(DATA_URL, onGetSuccess, onGetError);
 
