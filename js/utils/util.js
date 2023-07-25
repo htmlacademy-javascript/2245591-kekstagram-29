@@ -10,5 +10,4 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-
 export { debounce, isEscape };
