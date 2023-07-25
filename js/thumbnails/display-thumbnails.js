@@ -15,8 +15,8 @@ const createThumbnail = (description) => {
   photoThumbnail.querySelector('.picture__likes').textContent = description.likes;
   photoThumbnail.querySelector('.picture__comments').textContent = description.comments.length;
 
-  photoThumbnail.addEventListener('click', (evt) => {
-    evt.preventDefault();
+  photoThumbnail.addEventListener('click', (event) => {
+    event.preventDefault();
     displayBigPicture(description);
   });
 

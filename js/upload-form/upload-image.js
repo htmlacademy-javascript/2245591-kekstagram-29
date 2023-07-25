@@ -30,7 +30,7 @@ const imgUploadSubmit = document.querySelector('.img-upload__submit');
 const onImageUploadCancelClick = () => closeUploadForm();
 
 const onDocumentKeydown = (event) => {
-  if (isEscape(event) && !(document.activeElement === textHashtags) && !(document.activeElement === textDescription)) {
+  if (isEscape(event) && !(document.activeElement === textHashtags) && !(document.activeElement === textDescription) && !document.querySelector('.error')) {
     event.preventDefault();
     closeUploadForm();
   }
@@ -57,7 +57,7 @@ function closeUploadForm () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-const fileChooser = (event) => {
+const chooseFile = (event) => {
   const image = event.target.files[0];
   const imageName = image.name.toLowerCase();
 
@@ -74,11 +74,9 @@ const fileChooser = (event) => {
   showMessage(UPLOAD_ERROR_MESSAGE, ERROR_CLASS_NAME);
 };
 
-const onUploadInputChange = (event) => fileChooser(event);
+const onUploadInputChange = (event) => chooseFile(event);
 
-const setButtonState = (state) => {
-  imgUploadSubmit.disabled = state;
-};
+const setButtonState = (state) => (imgUploadSubmit.disabled = state);
 
 const uploadSuccess = () => {
   setButtonState(false);
